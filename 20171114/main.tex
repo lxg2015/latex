@@ -38,7 +38,7 @@
     \framesubtitle{2013 Rich feature hierarchies for accurate object detection and semantic segmentation}
     \begin{figure}
         \centering
-        \includegraphics[height=4cm]{graphic/rcnnflow.eps}
+        \includegraphics[height=4cm]{graphic/rcnnflow.jpg}
     \end{figure}
     输入：图像及selective search算法提出的2000个proposal box。  \\
     输出：proposal box包含的目标类别，及修正后的位置坐标。  \\
@@ -49,7 +49,7 @@
     % \framesubtitle{proposal box的变换}
     \begin{figure}
         \centering
-        \includegraphics[height=5cm]{graphic/rcnnwarp.eps}
+        \includegraphics[height=5cm]{graphic/rcnnwarp.jpg}
     \end{figure}
     \scriptsize{A是原图的proposal box，B是proposal box的最小外接正方形，短边使用原图填充，然后放大到$227\times 227$，C与B的相同，只是填充短边时使用图像均值，D是直接 warp，即直接进行放大。每列图像，上一行是直接对proposal box处理，即 context padding = 0，下一行的 context padding = 16。实验表明使用D方法中的 warp with context padding = 16时，效果最好，提高3-5 mAP\%}
 \end{frame}
@@ -58,7 +58,7 @@
     \frametitle{特征提取网络}
     \begin{figure}
         \centering
-        \includegraphics[height=3.7cm]{graphic/alexnet.eps}
+        \includegraphics[height=3.7cm]{graphic/alexnet.jpg}
     \end{figure}
     采用了和Alexnet一样的结构，5层卷积，3层全连接的分类网路。在做特征提取时，只计算到第二层全连接输出4096维特征向量。
 \end{frame}
@@ -92,7 +92,7 @@
     Intersection Over Union：两个框重叠度的计算 \\
     \begin{figure}
         \centering
-        \includegraphics[height=4cm]{graphic/iou.eps}
+        \includegraphics[height=4cm]{graphic/iou.png}
     \end{figure}
 \end{frame}
 
@@ -116,7 +116,7 @@
     \framesubtitle{2015 Fast R-CNN}
     \begin{figure}
         \centering
-        \includegraphics[height=4.3cm]{graphic/fastrcnnflow.eps}
+        \includegraphics[height=4.3cm]{graphic/fastrcnnflow.jpg}
     \end{figure}
     输入：图像及selective search算法提出的2000个proposal box。  \\
     输出：proposal box包含的目标类别，及修正后的位置坐标。  \\
