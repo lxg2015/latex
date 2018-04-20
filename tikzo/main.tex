@@ -1,0 +1,62 @@
+\documentclass[a4paper, 10pt]{article}
+% \documentclass{article}
+    % http://blog.csdn.net/duinodu/article/details/78824721
+    \usepackage{tikz}
+    \usepackage{verbatim}
+    \usepackage[active,tightpage]{preview}
+    
+    \usepackage[hang,small,bf]{caption}
+    \newcommand{\assign}{:=}
+    
+    \usetikzlibrary{positioning}
+    \usetikzlibrary{shapes,arrows,shadows}
+    
+    \usepackage{amsmath,bm,times}
+    \begin{document}
+    
+    \tikzstyle{smallrect}=[draw=black,thick,minimum height=2em,minimum width=0.8em]
+    
+    \begin{tikzpicture}[
+        bigrect/.style={rectangle, draw=black,thick,fill=green!30, very thick, minimum size=15mm},
+        ]
+        % A,B,loss
+        \node[bigrect,fill={rgb:red,195;green,130;blue,15}]   (B)                       {\color{white}$B$};
+        \path (B.east)+(3.2,0.5) node (A)       [bigrect,fill={rgb:red,0;green,51;blue,98}]     {\color{white}$A$};
+        \path (B.east)+(8,0)  node (B_hat)  [bigrect,fill={rgb:red,254;green,181;blue,23}]  {$\hat{B}$};
+    
+        \path (A.north)+(0,1) node (L) [bigrect,fill=yellow!60,minimum height=2em] {$L_1+D$};
+        \path (A.south)+(0,-0.5) node (Q) [bigrect,fill=green!60,minimum height=1.5em]{$Q(z|B)$};
+        \path (A.south)+(0,-2) node (N) [bigrect,fill=blue!30,minimum height=1.5em]{$N(z)$};
+    
+        % Encoder
+        \path (B.east)+(0.7,0) node (_a1) [smallrect,minimum height=6em]{};
+        \path (_a1.east)+(0.3,0) node (_a2) [smallrect,minimum height=4.5em]{};
+        \path (_a1.east)+(0.8,0) node (_a3) [smallrect,minimum height=3em]{};
+        \path (_a1.east)+(0.35,0) node (_a4) [bigrect, minimum size=2.3em,fill=white]{$E$};
+        
+        % Generator
+        \path (A.east)+(0.7,-0.5) node (_b1) [smallrect,minimum height=6em]{};
+        \path (_b1.east)+(0.3,0) node (_b2) [smallrect,minimum height=4.5em]{};
+        \path (_b1.east)+(0.8,0) node (_b3) [smallrect,minimum height=3em]{};
+        \path (_b1.east)+(1.3,0) node (_b4) [smallrect,minimum height=4.5em]{};
+        \path (_b1.east)+(1.8,0) node (_b5) [smallrect,minimum height=6em]{};
+        \path (_b1.east)+(0.8,0) node (_b6) [bigrect, minimum size=2.3em,fill=white]{$G$};
+        
+        \path (_b6.south)+(0,-1.2) node (KL) [bigrect,fill=yellow!60,minimum height=2em]{$KL$};
+        
+        %Lines
+        \draw[->,dashed,thick] (B_hat.east) .. controls ([xshift=1cm,yshift=4em] B_hat.east) and ([xshift=4cm] L.east) .. (L.east);
+        \draw[->,dashed,thick] (B.west) .. controls ([xshift=-1cm,yshift=4em] B.west) and ([xshift=-4cm] L.west) .. (L.west);
+        \draw[->,thick] (B.east) to (_a1.west);
+        \draw[->,thick] (_a3.east) .. controls ([xshift=0.4cm,yshift=0em] _a3.east) and ([xshift=-0.4cm] Q.west) .. (Q.west);
+        \draw[->,dashed,thick] (Q.east) .. controls ([xshift=0.4cm] Q.east) and ([xshift=-0.4cm,yshift=0.6em] KL.west) .. (KL.165);
+        \draw[->,dashed,thick] (N.east) .. controls ([xshift=0.4cm] N.east) and ([xshift=-0.4cm,yshift=-0.5em] KL.west) .. (KL.195);
+        \draw[->,thick] (A.east) to (_b1.107);
+        \draw[->,thick,pink,dashed] (Q.east) to (_b1.259);
+        \draw[->,thick] (_b5.east) to (B_hat.west);
+        
+        \path (N.south)+(0,-0.8) node (legend1) [bigrect, draw=white,minimum size=2.3em,fill=white]{\textbf{(c) Training cVAE-GAN}};
+        
+    \end{tikzpicture}
+
+    \end{document}

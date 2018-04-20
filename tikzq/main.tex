@@ -1,0 +1,11 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{positioning}
+\tikzset{>=stealth}
+\begin{document}
+\begin{tikzpicture}[node distance = 1.5cm]
+    \node (test) {I'm a soldier!};
+    \node (testDesc) [above right = of test] {Yes, you are!};
+    \draw [->,thick] (testDesc) to [in = 60, out = -120] (test);
+\end{tikzpicture}
+\end{document}
